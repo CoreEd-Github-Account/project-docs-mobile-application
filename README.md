@@ -1,56 +1,99 @@
-# Welcome to your Expo app 👋
+# Project Docs - Mobile Application 📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern mobile companion application built with **React Native**, **Expo (SDK 57)**, and **Expo Router**, fully integrated with the **Project Docs** web application backend and **PostgreSQL (Supabase)** database.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- **🔐 Secure Authentication**:
+  - Sign In and Sign Up with cryptographic HS256 JWT sessions.
+  - One-tap quick demo user fill (`admin`, `tasneem`, `ubaid`).
+  - Auto-fallback to local cached session on app restart.
+  - Server URL config with real-time backend connection ping tester.
 
-2. Start the app
+- **📁 Projects & Documentation**:
+  - Browse projects directly synchronized with the PostgreSQL database.
+  - Create new projects with custom initial sections.
+  - Full documentation viewer with expandable section notes and requirements.
+  - Add new sections to existing projects on the fly.
+  - Search and filter projects.
 
-   ```bash
-   npx expo start
-   ```
+- **✅ Task Tracker & Kanban**:
+  - Real-time project task list.
+  - Filter tasks by stages: `All`, `In Progress`, `Completed`, `Stopped`.
+  - One-tap interactive stage switcher directly on task cards.
+  - Add new tasks with title, description, and target stage.
+  - Delete completed tasks.
 
-In the output, you'll find options to open the app in a
+- **🔐 Workspace Vault**:
+  - **Subscriptions Tracker**: Track monthly software expenses, renewal dates, and total recurring monthly spend.
+  - **Password Credentials Vault**: Safe project credentials manager with show/hide password toggle.
+  - **Prompt Library**: Save AI system prompts and documentation guidelines for quick copy and reuse.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **⚙️ Profile & Settings**:
+  - User details & avatar.
+  - Backend API URL switcher (Localhost, Android Emulator `10.0.2.2:3000`, or local network IP).
+  - Real-time server latency ping tester.
+  - Database & infrastructure overview.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🛠️ Tech Stack & Architecture
 
-When you're ready, run:
+- **Framework**: Expo (SDK 57) + React Native 0.86 + React 19
+- **Navigation**: Expo Router (Universal Tab Navigation)
+- **Local Storage**: `@react-native-async-storage/async-storage`
+- **Icons**: `@expo/vector-icons` (Ionicons)
+- **Backend**: Next.js 16 REST API (`web-application`)
+- **Database**: PostgreSQL on Supabase (`aws-0-ap-southeast-2.pooler.supabase.com`)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Start the Backend (`web-application`)
+
+First, ensure the web application backend is running:
 
 ```bash
-npm run reset-project
+cd ../web-application
+npm run dev
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The backend will start at `http://localhost:3000`.
 
-### Other setup steps
+### 2. Start the Mobile Application (`mobile-application`)
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+In a new terminal:
 
-## Learn more
+```bash
+cd mobile-application
+npm.cmd start
+# or
+npx.cmd expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Open on Your Preferred Device
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Web Browser**: Press `w` in terminal or run `npm.cmd run web`.
+- **Android Device / Emulator**: Press `a` in terminal.
+  - *Tip for Android Emulator*: Set backend URL in Settings to `http://10.0.2.2:3000`.
+- **iOS Simulator**: Press `i` in terminal.
+- **Physical Device (Expo Go)**:
+  - Install **Expo Go** from Google Play or Apple App Store.
+  - Scan the QR code shown in the terminal.
+  - Set the backend URL in Settings to your computer's local IP (e.g. `http://192.168.x.x:3000`).
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 🔗 Backend API Endpoints Used
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+| Feature | Method & Endpoint |
+|---|---|
+| Auth / Profile | `GET /api/auth`, `POST /api/auth`, `DELETE /api/auth` |
+| Projects | `GET /api/projects`, `POST /api/projects`, `DELETE /api/projects` |
+| Tasks | `GET /api/tasks?projectId=...`, `POST /api/tasks`, `PUT /api/tasks`, `DELETE /api/tasks` |
+| Subscriptions | `GET /api/subscriptions`, `POST /api/subscriptions`, `DELETE /api/subscriptions` |
+| Passwords | `GET /api/passwords`, `POST /api/passwords`, `DELETE /api/passwords` |
+| Prompts | `GET /api/prompts`, `POST /api/prompts`, `DELETE /api/prompts` |
